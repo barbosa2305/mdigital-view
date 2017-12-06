@@ -1,0 +1,13 @@
+.panelSuperior {
+    width: 1000px;
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.panelInferior {
+    height: 400px;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1px;
+}

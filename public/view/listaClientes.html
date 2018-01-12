@@ -1,6 +1,6 @@
 <meta charset="UTF-8">
 
-<div style="margin-left:8px" ng-controller="listaClientesCtrl"> <!--  -->
+<div style="margin-left:8px" ng-controller="listaClientesCtrl as ctrl"> <!--  -->
     <div class="panel panel-default" style="height:400px">
         <div class="panel-heading">
             <h1 class="panel-title" style="font-weight:bold;color:gray">Clientes</h1>
@@ -11,14 +11,14 @@
                 <th style="text-align:center;font-weight:bold;background-color:#f5f5f5">E-mail</th>
                 <th style="text-align:center;background-color:#f5f5f5" colspan="2">Ações</th>
                 
-                <tr style="height:45.85px" ng-repeat="cliente in vm.clientes">
+                <tr style="height:45.85px" ng-repeat="cliente in ctrl.clientes">
                     <td align="center" style="color:gray;width:160px">{{cliente.nome}}</td>
                     <td align="center" style="color:gray;width:210px">{{cliente.email}}</td>
                     <td style="text-align:center;vertical-align:middle;width:42px">
-                        <a href=""><span class="glyphicon glyphicon-pencil" style="color:black"></span></a>
+                        <a href="#/cliente/{{cliente.id}}"><span class="glyphicon glyphicon-pencil" style="color:black"></span></a>
                     </td>
                     <td style="text-align:center;vertical-align:middle;width:42px">
-                        <a href=""><span class="glyphicon glyphicon-ban-circle" style="color:black"></span></a>
+                        <a href=""><span class="glyphicon glyphicon-ban-circle" style="color:black" ng-click="vm.excluir(cliente)"></span></a>
                     </td>
                 </tr>
             </table>

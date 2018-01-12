@@ -1,27 +1,21 @@
 'use strict';
 
 angular.module('clienteServices', ['ngResource'])
-    .factory('clientesFactory', function ($resource, config) {  
-        return $resource(config.baseUrl + 'cliente', {}, {
-            query: {method: 'GET', isArray: true},
-            create: {method: 'POST'}
+    .factory('recursoCliente', function ($resource, config) {  
+        return $resource(config.baseUrl + 'cliente/:clienteId', null, {
+            'update': {
+                method: 'PUT'
+            }
         });
     })
-    .factory('clienteFactory', function ($resource, config) {
-        return $resource(config.baseUrl + 'cliente' + ':id', {}, {
-            get: {method: 'GET'},
-            update: {method: 'PUT', params: {id: '@id'}},
-            remove: {method: 'DELETE', params: {id: '@id'}}
-        });
-    })
-    .factory('cadastroDeClientes', function (clienteFactory, $q, $rootScope) {
+    .factory('cadastroDeClientes', function (recursoCliente, $q, $rootScope) {
        var evento = 'clienteCadastrado';
        var service = {};
 
        service.cadastrar = function(cliente) {
             return $q(function (resolve, reject) {
-                if (cliente._id) {
-                    clienteFactory.update({clienteId: cliente._id}, cliente, function () {
+                if (cliente.id) {
+                    recursoCliente.update({clienteId:cliente.id}, cliente, function () {
                         $rootScope.$broadcast(evento);
                         resolve({
                             mensagem: 'Cliente atualizado com sucesso',
@@ -34,11 +28,11 @@ angular.module('clienteServices', ['ngResource'])
                     });
 
                 } else {
-                    clienteFactory.save(cliente, function () {
+                    recursoCliente.save(cliente, function () {
                         $rootScope.$broadcast(evento);
                         resolve({
                             mensagem: 'Cliente incluído com sucesso',
-                            inclusao: false
+                            inclusao: true
                         });
                     }, function (erro) {
                         reject({

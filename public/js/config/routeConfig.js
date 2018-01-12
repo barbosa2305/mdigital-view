@@ -3,9 +3,14 @@
 angular.module('mDigital').config(function ($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('');
     
-    $routeProvider.when('/principalCliente', {
+    $routeProvider.when('/cliente', {
         templateUrl: 'view/principalCliente.html',
         controller: 'listaClientesCtrl',
+        controllerAs: 'vm'
+    });
+    $routeProvider.when('/cliente/:clienteId', {
+        templateUrl: 'view/principalCliente.html',
+        controller: 'cadastroClienteCtrl',
         controllerAs: 'vm'
     });
     
@@ -16,17 +21,15 @@ angular.module('mDigital').config(function ($routeProvider, $locationProvider) {
         */
     });
     /*
-    $routeProvider.when('/cadastroCliente', {
-        templateUrl: 'view/cadastroCliente.html',
-        controller: 'cadastroClientesCtrl',
-        controllerAs: 'vm'
-    });
     $routeProvider.when('/cadastroMalaDireta', {
         templateUrl: 'view/cadastroMalaDireta.html',
         controller: 'cadastroMalaDiretaCtrl',
         controllerAs: 'vm'
     });
     */
+    $routeProvider.when('/error', {
+        templateUrl: 'view/error.html'
+    });
 
-    $routeProvider.otherwise({redirectTo: '/principalCliente'});
+    $routeProvider.otherwise({redirectTo: '/cliente'});
 });

@@ -1,6 +1,6 @@
 <html ng-app="mDigital">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="UTF-8" X-Content-Type-Options="nosniff">
 	<!-- <base href="/mdigital/"> -->
 	<title>MDigital - Marketing Digital</title>
 	<script src="node_modules/jquery/dist/jquery.js"></script>
@@ -8,15 +8,19 @@
     <link rel="stylesheet" type="text/css" href="css/app.css">
 	<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
 	<script src="node_modules/angular/angular.js"></script>
+	<script src="node_modules/angular-locale-pt-br/angular-locale_pt-br.js"></script>
 	<script src="node_modules/angular-route/angular-route.js"></script>
 	<script src="node_modules/angular-resource/angular-resource.js"></script>
+	<script src="node_modules/angular-input-masks/releases/angular-input-masks-standalone.min.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/services/clienteServices.js"></script>
 	<script src="js/config/routeConfig.js"></script>
+	<script src="js/config/interceptorsConfig.js"></script>
 	<script src="js/value/configValue.js"></script>
 	<script src="js/controllers/listaClientesCtrl.js"></script>
 	<script src="js/controllers/cadastroClienteCtrl.js"></script>
-
+	<script src="js/interceptors/timestampInterceptor.js"></script>
+	<script src="js/interceptors/errorInterceptor.js"></script>
 </head>
 <body>
 	<div ng-view></div>	

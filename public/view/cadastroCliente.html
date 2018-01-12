@@ -1,35 +1,53 @@
 <meta charset="UTF-8">
 
-<div class="panelSuperior">
+<div class="panelSuperior" ng-controller="cadastroClienteCtrl as ctrl">
     <div class="panel panel-default">
         <div class = "panel-heading">
             <h1 class="panel-title" style="font-weight:bold;color:gray">Cadastro de Clientes</h1>
         </div>
-        <form novalidate class="form-horizontal" role="form" style="margin:12px"> 
+        <form novalidate name="ctrl.formCliente" class="form-horizontal" role="form" style="margin:12px"> 
             <div class="form-group">
                 <label for="nome" class="control-label col-sm-2" style="text-align:left;font-weight:unset">Nome:</label>
                 <div class="col-sm-4">
-                    <input id="nome" type="text" class="form-control">
+                    <input name="nome" type="text" class="form-control" placeholder="Informe o nome" ng-model="ctrl.cliente.nome" ng-required="true"> 
                 </div>
                 <label for="inputEmail" class="control-label col-sm-2" style="text-align:left;font-weight:unset">E-mail:</label>
                 <div class="col-sm-4">
-                    <input id="inputEmail" type="email" class="form-control">
+                    <input name="inputEmail" type="email" class="form-control" placeholder="Informe o e-mail" ng-model="ctrl.cliente.email" ng-required="true" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
                 </div>
             </div>
             <div class="form-group">
                 <label for="telefone" class="control-label col-sm-2" style="text-align:left;font-weight:unset">Telefone:</label>
-                <div class="col-sm-4">
-                    <input id="telefone" type="text" class="form-control">
+                <div class="col-sm-4" ng-class="{'has-error':ctrl.formCliente.telefone.$invalid && ctrl.formCliente.telefone.$dirty, 'has-success':ctrl.formCliente.telefone.$valid}">
+                    <input name="telefone" type="text" class="form-control" placeholder="Informe o telefone" ng-model="ctrl.cliente.telefone" ng-required="true" ui-br-phone-number-mask>
                 </div>
                 <label for="rendaBruta" class="control-label col-sm-2" style="text-align:left;font-weight:unset">Renda Bruta Mensal:</label>
                 <div class="col-sm-4">
-                    <input id="rendaBruta" type="text" class="form-control">
+                    <input name="rendaBruta" type="text" class="form-control" placeholder="Informe a renda bruta" ng-model="ctrl.cliente.rendaBruta" ng-required="true" maxlength="20" ng-pattern="/^[0-9]{0,6}\.?[0-9]{2}$/">
                 </div>
             </div>
             <div class="form-group">
+                <div class="col-sm-12" style="text-align:center;margin-bottom:10px" ng-show="ctrl.formCliente.nome.$error.required && ctrl.formCliente.nome.$dirty">
+                    <span class="form-control alert-danger">O campo Nome é obrigatório.</span>
+                </div>
+                <div class="col-sm-12" style="text-align:center;margin-bottom:10px" ng-show="ctrl.formCliente.inputEmail.$error.required && ctrl.formCliente.inputEmail.$dirty">
+                    <span class="form-control alert-danger">O campo E-mail é obrigatório.</span>
+                </div>
+                <div class="col-sm-12" style="text-align:center;margin-bottom:10px" ng-show="ctrl.formCliente.inputEmail.$error.email && ctrl.formCliente.inputEmail.$error.pattern">
+                    <span class="form-control alert-danger">O formato do campo E-mail é inválido.</span>
+                </div>
+                <div class="col-sm-12" style="text-align:center;margin-bottom:10px" ng-show="ctrl.formCliente.telefone.$error.required && ctrl.formCliente.telefone.$dirty">
+                    <span class="form-control alert-danger">O campo Telefone é obrigatório.</span>
+                </div>
+                <div class="col-sm-12" style="text-align:center;margin-bottom:10px" ng-show="ctrl.formCliente.rendaBruta.$error.required && ctrl.formCliente.rendaBruta.$dirty">
+                    <span class="form-control alert-danger">O campo Renda Bruta Mensal é obrigatório.</span>
+                </div>
+                <div class="col-sm-12" style="text-align:center;margin-bottom:10px" ng-show="ctrl.formCliente.rendaBruta.$error.pattern">
+                    <span class="form-control alert-danger">O campo Renda Bruta Mensal deve ter o formato numérico. Ex.: 999999.99</span>
+                </div>
                 <div class="col-sm-12" style="text-align:center">
-                    <button class="btn btn-success">Cadastrar</button
-                ></div>
+                    <button class="btn btn-success" ng-click="ctrl.gravar(ctrl.cliente)" ng-disabled="ctrl.formCliente.$invalid">Cadastrar</button>
+                </div>
             </div>
         </form>
     </div>

@@ -10,7 +10,7 @@ angular.module('mDigital').controller('cadastroClienteCtrl', function ($location
         recursoCliente.get({clienteId:$routeParams.clienteId}, function(cliente) {
             vm.cliente = cliente;
         });
-    }
+    } 
 
     vm.gravar = function (cliente) {       
         if (vm.formCliente.$valid) {

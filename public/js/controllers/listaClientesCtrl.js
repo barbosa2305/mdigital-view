@@ -15,7 +15,6 @@ angular.module('mDigital').controller('listaClientesCtrl', function (recursoClie
 
     vm.excluir = function(cliente) {
         recursoCliente.delete({clienteId:cliente.id}, function() {
-        //recursoCliente.delete({clienteId:2000}, function() {
             $rootScope.$broadcast('listaClientesAtualizada');
         }, function(erro) {
             vm.mensagem = 'Não foi possível excluir o cliente ' + cliente.nome;

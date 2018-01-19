@@ -8,6 +8,29 @@ angular.module('clienteServices', ['ngResource'])
             }
         });
     })
+    .factory('recursoClientesMalaDireta', function ($resource, config) {  
+        return $resource(config.baseUrl + 'cliente/faixarenda/:rendaInicial/:rendaFinal', {rendaInicial:'@rendaInicial',rendaFinal:'@rendaFinal'});
+        /*
+        , {rendaInicial:'@rendaInicial',rendaFinal:'@rendaFinal'}
+
+        return $resource(config.baseUrl + 'cliente/faixarenda/:rendaInicial/:rendaFinal', {
+            rendaInicial:'@rendaInicial',rendaFinal:'@rendaFinal'}, {
+            'query': {
+                method: 'GET'
+            }
+        });
+
+        return $resource(config.baseUrl + 'cliente/faixarenda/:rendaInicial/:rendaFinal', null, {
+            'query': {
+                method: 'GET'
+            },
+            params:{
+                rendaInicial:'@rendaInicial',
+                rendaFinal:'@rendaFinal'
+            }
+        });
+        */
+    })
     .factory('cadastroDeClientes', function (recursoCliente, $q, $rootScope) {
        var evento = 'clienteCadastrado';
        var service = {};

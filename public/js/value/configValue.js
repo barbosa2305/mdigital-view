@@ -1,5 +1,6 @@
 'use strict';
 
-angular.module('clienteServices').constant('config', {
-    baseUrl: 'http://localhost:8080/mdigital-service/api/'
-});
+angular.module('mDigital')
+    .constant('config', {
+        baseUrl: 'http://localhost:8080/mdigital-service/api/'
+    });

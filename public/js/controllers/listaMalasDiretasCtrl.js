@@ -20,15 +20,19 @@ angular.module('mDigital')
         };
 
         vm.atualizarListaClientesMalaDireta = function(malaDireta) {
+            console.log(malaDireta);
+            
             $rootScope.$broadcast('listaClientesMalaDiretaAtualizada', malaDireta.faixaRendaInicial, malaDireta.faixaRendaFinal);
         }
 
         vm.excluir = function(malaDireta) {
-            //$location.path("/maladireta");
+            console.log(malaDireta);    
+            /*
             recursoMalaDireta.delete({malaDiretaId:malaDireta.id}, function() {
                 $rootScope.$broadcast('listaMalasDiretasAtualizada');
             }, function(erro) {
                 vm.mensagem = 'Não foi possível excluir a mala direta ' + malaDireta.nome;
             });
+            */
         };
     });

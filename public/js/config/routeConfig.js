@@ -11,7 +11,8 @@ angular.module('mDigital')
         });
         $routeProvider.when('/cliente/:clienteId', {
             templateUrl: 'view/principalCliente.html',
-            controller: 'cadastroClienteCtrl',
+            //controller: 'cadastroClienteCtrl',
+            controller: 'listaClientesCtrl',
             controllerAs: 'vm'
         });
         $routeProvider.when('/maladireta', {
@@ -29,13 +30,6 @@ angular.module('mDigital')
             controller: 'listaMalasDiretasCtrl',
             controllerAs: 'vm'
         });
-        /*
-        $routeProvider.when('/maladireta/:malaDiretaId', {
-            templateUrl: 'view/principalMalaDireta.html',
-            controller: 'listaMalasDiretasCtrl',
-            controllerAs: 'vm'
-        });
-        */
         
         $routeProvider.when('/error', {
             templateUrl: 'view/error.html'

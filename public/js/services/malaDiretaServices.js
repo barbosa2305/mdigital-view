@@ -2,6 +2,7 @@
 
 angular.module('malaDiretaServices', ['ngResource'])
     .factory('recursoMalaDireta', function ($resource, config) {  
+        console.log(config.baseUrl + 'maladireta/:malaDiretaId');
         return $resource(config.baseUrl + 'maladireta/:malaDiretaId', null, {
             'update': {
                 method: 'PUT'

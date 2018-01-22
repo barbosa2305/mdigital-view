@@ -27,19 +27,23 @@ angular.module('mDigital')
         };
 
         vm.listarClientesMalaDireta = function() {
-        //    if ($routeParams.rendaInicial && $routeParams.rendaFinal) {
-                vm.clientes = recursoClientesMalaDireta.query({rendaInicial:$routeParams.rendaInicial,rendaFinal:$routeParams.rendaFinal});/*
+            if ($routeParams.rendaInicial && $routeParams.rendaFinal) {
+                vm.clientes = recursoClientesMalaDireta.query({rendaInicial:$routeParams.rendaInicial,rendaFinal:$routeParams.rendaFinal});
             } else {
-                vm.clientes = [];*/
-           // }
+                vm.clientes = [];
+            }
         }
 
         vm.excluir = function(cliente) {
+            console.log(cliente);
+            
+            /*
             recursoCliente.delete({clienteId:cliente.id}, function() {
                 $rootScope.$broadcast('listaClientesAtualizada');
             }, function(erro) {
                 vm.mensagem = 'Não foi possível excluir o cliente ' + cliente.nome;
             }); 
+            */
         };
 
     });

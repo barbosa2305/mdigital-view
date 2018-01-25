@@ -1,49 +1,34 @@
 'use strict';
 
 angular.module('mDigital')
-    .controller('listaClientesCtrl', function (recursoCliente, recursoClientesMalaDireta, $rootScope, $routeParams) {
+    .controller('listaClientesCtrl', function (recursoCliente, recursoClientesMalaDireta, $scope, $rootScope) {
         /* jshint validthis: true */
         var vm = this;
         vm.clientes = [];
         vm.mensagem = '';
-
-        vm.$onInit = function() {
-            var eventoAtualizarListaClientes = $rootScope.$on('listaClientesAtualizada', vm.atualizarListaClientes);
-            var eventoListarClientesMalaDireta = $rootScope.$on('listaClientesMalaDiretaAtualizada', vm.listarClientesMalaDireta);
-            vm.$onDestroy = function() {
-                eventoAtualizarListaClientes();
-                eventoListarClientesMalaDireta();
-            };
-
-            if ($routeParams.rendaInicial && $routeParams.rendaFinal) {
-                vm.listarClientesMalaDireta();
-            } else {
-                vm.atualizarListaClientes();
-            }
-        }
-
-        vm.atualizarListaClientes = function() {
-            vm.clientes = recursoCliente.query(); 
+        
+        vm.listar = function() {
+            vm.clientes = recursoCliente.query();
         };
 
-        vm.listarClientesMalaDireta = function() {
-            if ($routeParams.rendaInicial && $routeParams.rendaFinal) {
-                vm.clientes = recursoClientesMalaDireta.query({rendaInicial:$routeParams.rendaInicial,rendaFinal:$routeParams.rendaFinal});
-            } else {
-                vm.clientes = [];
-            }
-        }
-
+        vm.editar = function(cliente) {
+            $rootScope.$broadcast('editarClienteEvento', {clienteEdicao: angular.copy(cliente)});
+        };
+        
         vm.excluir = function(cliente) {
-            console.log(cliente);
-            
-            /*
             recursoCliente.delete({clienteId:cliente.id}, function() {
-                $rootScope.$broadcast('listaClientesAtualizada');
+                var indiceCliente = vm.clientes.indexOf(cliente);
+                vm.clientes.splice(indiceCliente, 1);
+                
             }, function(erro) {
                 vm.mensagem = 'Não foi possível excluir o cliente ' + cliente.nome;
             }); 
-            */
         };
+        
+        $scope.$on('listarClientesEvento', vm.listar); 
+        $scope.$on('listarClientesMalaDireta', function(event, args) {
+            vm.clientes = recursoClientesMalaDireta.query({rendaInicial:args.rendaInicial,rendaFinal:args.rendaFinal});
+        });
 
+        vm.listar();
     });

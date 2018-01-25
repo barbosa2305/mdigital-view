@@ -1,18 +1,16 @@
 'use strict'; 
 
 angular.module('mDigital')
-    .controller('cadastroClienteCtrl', function ($location, recursoCliente, $routeParams, cadastroDeClientes, $rootScope) {
+    .controller('cadastroClienteCtrl', function (cadastroDeClientes, $scope, $rootScope) {
         /* jshint validthis: true */
         var vm = this;
         vm.cliente = {};
         vm.mensagem = '';
 
-        if ($routeParams.clienteId) {
-            recursoCliente.get({clienteId:$routeParams.clienteId}, function(cliente) {
-                vm.cliente = cliente;
-            });
-        } 
-
+        $scope.$on('editarClienteEvento', function(event, args) {
+            vm.cliente = args.clienteEdicao;
+        });
+        
         vm.gravar = function (cliente) {       
             if (vm.formCliente.$valid) {
                 cadastroDeClientes.cadastrar(cliente).then(function(dados) {
@@ -26,9 +24,8 @@ angular.module('mDigital')
         };
 
         vm.inicializar = function() {
-            $location.path("/cliente");
-            $rootScope.$broadcast('listaClientesAtualizada');
-            vm.formCliente.$setPristine();
             delete vm.cliente;
+            $rootScope.$broadcast('listarClientesEvento');
+            vm.formCliente.$setPristine();
         };
     });

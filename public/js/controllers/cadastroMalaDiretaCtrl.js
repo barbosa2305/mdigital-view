@@ -1,17 +1,19 @@
 'use strict'; 
 
 angular.module('mDigital')
-    .controller('cadastroMalaDiretaCtrl', function ($location, recursoMalaDireta, $routeParams, cadastroDeMalasDiretas, $rootScope) {
+    .controller('cadastroMalaDiretaCtrl', function (cadastroDeMalasDiretas, $rootScope) {
         /* jshint validthis: true */ 
         var vm = this;
         vm.malaDireta = {};
-        vm.mensagem = '';
+        vm.mensagem = ''; 
 
+        /*
         if ($routeParams.malaDiretaId) {
             recursoMalaDireta.get({malaDiretaId:$routeParams.malaDiretaId}, function(malaDireta) {
                 vm.malaDireta = malaDireta;
             });
         } 
+        */
 
         vm.gravar = function (malaDireta) {       
             if (vm.formMalaDireta.$valid) {
@@ -26,9 +28,8 @@ angular.module('mDigital')
         };
 
         vm.inicializar = function() {
-            $location.path("/maladireta");
-            $rootScope.$broadcast('listaMalasDiretasAtualizada');
-            vm.formMalaDireta.$setPristine();
             delete vm.malaDireta;
+            $rootScope.$broadcast('listarMalasDiretasEvento');
+            vm.formMalaDireta.$setPristine();
         };
     });

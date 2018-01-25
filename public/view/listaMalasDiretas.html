@@ -1,19 +1,20 @@
 <meta charset="UTF-8">
 
-<div style="margin-right:8px" ng-controller="listaMalasDiretasCtrl as ctrl">
+<div style="margin-right:8px" ng-controller="listaMalasDiretasCtrl as vm">
     <div class="panel panel-default panel-table" style="height:400px">
         <div class="panel-heading">
             <h1 class="panel-title" style="font-weight:bold;color:gray">Malas Diretas</h1>
         </div>
         <div class="panel-body" style="margin:-16px">
-            <table class="table table-bordered table-list">
+            <div class="form-control alert-info" ng-show="!vm.malasDiretas.length">Nenhuma mala direta foi localizada.</div>
+            <table class="table table-bordered table-list" ng-show="vm.malasDiretas.length">
                 <th style="font-weight:bold;background-color:#f5f5f5">Faixa de Renda</th>
                 <th style="text-align:center;background-color:#f5f5f5" colspan="2">Ações</th>
 
-                <tr style="height:45.85px" ng-repeat="malaDireta in ctrl.malasDiretas">
+                <tr style="height:45.85px" ng-repeat="malaDireta in vm.malasDiretas">
                     <td align="center" style="color:gray;width:300px">
                         <div ng-show="!editarMalaDireta">
-                            <a href="#/maladireta/{{malaDireta.faixaRendaInicial}}/{{malaDireta.faixaRendaFinal}}" ng-click="vm.atualizarListaClientesMalaDireta(malaDireta)">{{malaDireta.faixaRendaInicial | currency}} - {{malaDireta.faixaRendaFinal | currency}}</a>
+                            <a href="" ng-click="vm.listarClientesMalaDireta(malaDireta)">{{malaDireta.faixaRendaInicial | currency}} - {{malaDireta.faixaRendaFinal | currency}}</a>
                         </div>
                         <div ng-show="editarMalaDireta">
                             <input name="faixaInicial" type="text" maxlength="15" ng-model="malaDireta.faixaRendaInicial" focado="{{editarMalaDireta}}" style="text-align:right;width:142px;border:none" ui-money-mask /> -
@@ -21,10 +22,10 @@
                         </div>
                     </td>
                     <td style="text-align:center;vertical-align:middle;width:42px">                        
-                        <a href="#/maladireta/{{malaDireta.id}}"><span ng-class="{'glyphicon glyphicon-floppy-save':editarMalaDireta,'glyphicon glyphicon-pencil':!editarMalaDireta}" style="color:black" ng-click="editarMalaDireta=!editarMalaDireta"></span></a>
+                        <a href=""><span ng-class="{'glyphicon glyphicon-floppy-save':editarMalaDireta,'glyphicon glyphicon-pencil':!editarMalaDireta}" style="color:black" ng-click="editarMalaDireta=!editarMalaDireta"></span></a>
                     </td>
                     <td style="text-align:center;vertical-align:middle;width:42px">
-                        <a href="#/maladireta/{{malaDireta.id}}"><span class="glyphicon glyphicon-ban-circle" style="color:black" ng-click="vm.excluir(malaDireta)"></span></a>
+                        <a href=""><span class="glyphicon glyphicon-ban-circle" style="color:black" ng-click="vm.excluir(malaDireta)"></span></a>
                     </td>
                 </tr>
             </table>

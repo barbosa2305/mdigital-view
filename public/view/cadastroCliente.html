@@ -1,49 +1,49 @@
 <meta charset="UTF-8"> 
 
-<div class="panelSuperior" ng-controller="cadastroClienteCtrl as ctrl">
+<div class="panelSuperior" ng-controller="cadastroClienteCtrl as vm">
     <div class="panel panel-default">
         <div class = "panel-heading">
             <h1 class="panel-title" style="font-weight:bold;color:gray">Cadastro de Clientes</h1>
         </div>
-        <form novalidate name="ctrl.formCliente" class="form-horizontal" role="form" style="margin:12px"> 
+        <form novalidate name="vm.formCliente" class="form-horizontal" role="form" style="margin:12px"> 
             <div class="form-group">
                 <label for="nome" class="control-label col-sm-2" style="text-align:left;font-weight:unset">Nome:</label>
                 <div class="col-sm-4">
-                    <input name="nome" type="text" class="form-control" placeholder="Informe o nome" ng-model="ctrl.cliente.nome" ng-required="true"> 
+                    <input name="nome" type="text" class="form-control" placeholder="Informe o nome" ng-model="vm.cliente.nome" ng-required="true"> 
                 </div>
                 <label for="inputEmail" class="control-label col-sm-2" style="text-align:left;font-weight:unset">E-mail:</label>
                 <div class="col-sm-4">
-                    <input name="inputEmail" type="email" class="form-control" placeholder="Informe o e-mail" ng-model="ctrl.cliente.email" ng-required="true" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
+                    <input name="inputEmail" type="email" class="form-control" placeholder="Informe o e-mail" ng-model="vm.cliente.email" ng-required="true" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
                 </div>
             </div>
             <div class="form-group">
                 <label for="telefone" class="control-label col-sm-2" style="text-align:left;font-weight:unset">Telefone:</label>
-                <div class="col-sm-4" ng-class="{'has-error':ctrl.formCliente.telefone.$invalid && ctrl.formCliente.telefone.$dirty, 'has-success':ctrl.formCliente.telefone.$valid}">
-                    <input name="telefone" type="text" class="form-control" placeholder="Informe o telefone" ng-model="ctrl.cliente.telefone" ng-required="true" ui-br-phone-number-mask>
+                <div class="col-sm-4" ng-class="{'has-error':vm.formCliente.telefone.$invalid && vm.formCliente.telefone.$dirty, 'has-success':vm.formCliente.telefone.$valid}">
+                    <input name="telefone" type="text" class="form-control" placeholder="Informe o telefone" ng-model="vm.cliente.telefone" ng-required="true" ui-br-phone-number-mask>
                 </div>
                 <label for="rendaBruta" class="control-label col-sm-2" style="text-align:left;font-weight:unset">Renda Bruta Mensal:</label>
                 <div class="col-sm-4">
-                    <input name="rendaBruta" type="text" maxlength="15" class="form-control" placeholder="Informe a renda bruta" ng-model="ctrl.cliente.rendaBruta" ng-required="true" ui-money-mask>
+                    <input name="rendaBruta" type="text" maxlength="15" class="form-control" placeholder="Informe a renda bruta" ng-model="vm.cliente.rendaBruta" ng-required="true" ui-money-mask>
                 </div> 
             </div>
             <div class="form-group">
-                <div class="col-sm-12" style="text-align:center;margin-bottom:10px" ng-show="ctrl.formCliente.nome.$error.required && ctrl.formCliente.nome.$dirty">
+                <div class="col-sm-12" style="text-align:center;margin-bottom:10px" ng-show="vm.formCliente.nome.$error.required && vm.formCliente.nome.$dirty">
                     <span class="form-control alert-danger">O campo Nome é obrigatório.</span>
                 </div>
-                <div class="col-sm-12" style="text-align:center;margin-bottom:10px" ng-show="ctrl.formCliente.inputEmail.$error.required && ctrl.formCliente.inputEmail.$dirty">
+                <div class="col-sm-12" style="text-align:center;margin-bottom:10px" ng-show="vm.formCliente.inputEmail.$error.required && vm.formCliente.inputEmail.$dirty">
                     <span class="form-control alert-danger">O campo E-mail é obrigatório.</span>
                 </div>
-                <div class="col-sm-12" style="text-align:center;margin-bottom:10px" ng-show="ctrl.formCliente.inputEmail.$error.email && ctrl.formCliente.inputEmail.$error.pattern">
+                <div class="col-sm-12" style="text-align:center;margin-bottom:10px" ng-show="vm.formCliente.inputEmail.$error.email && vm.formCliente.inputEmail.$error.pattern">
                     <span class="form-control alert-danger">O formato do campo E-mail é inválido.</span>
                 </div>
-                <div class="col-sm-12" style="text-align:center;margin-bottom:10px" ng-show="ctrl.formCliente.telefone.$error.required && ctrl.formCliente.telefone.$dirty">
+                <div class="col-sm-12" style="text-align:center;margin-bottom:10px" ng-show="vm.formCliente.telefone.$error.required && vm.formCliente.telefone.$dirty">
                     <span class="form-control alert-danger">O campo Telefone é obrigatório.</span>
                 </div>
-                <div class="col-sm-12" style="text-align:center;margin-bottom:10px" ng-show="ctrl.formCliente.rendaBruta.$error.required && ctrl.formCliente.rendaBruta.$dirty">
+                <div class="col-sm-12" style="text-align:center;margin-bottom:10px" ng-show="vm.formCliente.rendaBruta.$error.required && vm.formCliente.rendaBruta.$dirty">
                     <span class="form-control alert-danger">O campo Renda Bruta Mensal é obrigatório.</span>
                 </div>
                 <div class="col-sm-12" style="text-align:center">
-                    <button class="btn btn-success" ng-click="ctrl.gravar(ctrl.cliente)" ng-disabled="ctrl.formCliente.$invalid">Cadastrar</button>
+                    <button class="btn btn-success" ng-click="vm.gravar(vm.cliente)" ng-disabled="vm.formCliente.$invalid">Cadastrar</button>
                 </div>
             </div>
         </form>

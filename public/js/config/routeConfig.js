@@ -5,32 +5,11 @@ angular.module('mDigital')
         $locationProvider.hashPrefix('');
         
         $routeProvider.when('/cliente', {
-            templateUrl: 'view/principalCliente.html',
-            controller: 'listaClientesCtrl',
-            controllerAs: 'vm'
-        });
-        $routeProvider.when('/cliente/:clienteId', {
-            templateUrl: 'view/principalCliente.html',
-            //controller: 'cadastroClienteCtrl',
-            controller: 'listaClientesCtrl',
-            controllerAs: 'vm'
+            templateUrl: 'view/principalCliente.html'
         });
         $routeProvider.when('/maladireta', {
-            templateUrl: 'view/principalMalaDireta.html',
-            controller: 'listaMalasDiretasCtrl',
-            controllerAs: 'vm'
+            templateUrl: 'view/principalMalaDireta.html'
         });
-        $routeProvider.when('/maladireta/:rendaInicial/:rendaFinal', {
-            templateUrl: 'view/principalMalaDireta.html',
-            controller: 'listaMalasDiretasCtrl',
-            controllerAs: 'vm'
-        });
-        $routeProvider.when('/maladireta/:malaDiretaId', {
-            templateUrl: 'view/principalMalaDireta.html',
-            controller: 'listaMalasDiretasCtrl',
-            controllerAs: 'vm'
-        });
-        
         $routeProvider.when('/error', {
             templateUrl: 'view/error.html'
         });

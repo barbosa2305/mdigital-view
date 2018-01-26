@@ -1,4 +1,4 @@
-'use strict'; 
+'use strict';
 
 angular.module('mDigital')
     .controller('cadastroClienteCtrl', function (cadastroDeClientes, $scope, $rootScope) {

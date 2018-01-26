@@ -6,13 +6,12 @@
             <h1 class="panel-title" style="font-weight:bold;color:gray">Clientes</h1>
         </div>
         <div class="panel-body" style="margin:-16px">
-            <div class="form-control alert-info" ng-show="!vm.clientes.length">Nenhum cliente foi localizado.</div>
             <table class="table table-bordered table-list" ng-show="vm.clientes.length">
                 <th style="text-align:center;font-weight:bold;background-color:#f5f5f5">Nome</th>
                 <th style="text-align:center;font-weight:bold;background-color:#f5f5f5">E-mail</th>
                 <th style="text-align:center;background-color:#f5f5f5" colspan="2">Ações</th>
                 
-                <tr style="height:45.85px" ng-repeat="cliente in vm.clientes">
+                <tr style="height:45.85px" ng-repeat="cliente in vm.clientes | orderBy:'nome'">
                     <td align="center" style="color:gray;width:160px">{{cliente.nome}}</td>
                     <td align="center" style="color:gray;width:210px">{{cliente.email}}</td>
                     <td style="text-align:center;vertical-align:middle;width:42px">
@@ -23,6 +22,7 @@
                     </td>
                 </tr>
             </table>
+            <div class="form-control alert-info" ng-show="!vm.clientes.length">Nenhum cliente foi localizado.</div>
         </div>
     </div>
 </div>

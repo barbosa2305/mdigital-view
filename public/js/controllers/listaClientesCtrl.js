@@ -26,7 +26,7 @@ angular.module('mDigital')
         };
         
         $scope.$on('listarClientesEvento', vm.listar); 
-        $scope.$on('listarClientesMalaDireta', function(event, args) {
+        $scope.$on('listarClientesMalaDiretaEvento', function(event, args) {
             vm.clientes = recursoClientesMalaDireta.query({rendaInicial:args.rendaInicial,rendaFinal:args.rendaFinal});
         });
 

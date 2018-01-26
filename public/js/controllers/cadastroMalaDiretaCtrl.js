@@ -7,14 +7,6 @@ angular.module('mDigital')
         vm.malaDireta = {};
         vm.mensagem = ''; 
 
-        /*
-        if ($routeParams.malaDiretaId) {
-            recursoMalaDireta.get({malaDiretaId:$routeParams.malaDiretaId}, function(malaDireta) {
-                vm.malaDireta = malaDireta;
-            });
-        } 
-        */
-
         vm.gravar = function (malaDireta) {       
             if (vm.formMalaDireta.$valid) {
                 cadastroDeMalasDiretas.cadastrar(malaDireta).then(function(dados) {

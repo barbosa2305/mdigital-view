@@ -12,7 +12,7 @@ angular.module('mDigital')
         };
 
         vm.listarClientesMalaDireta = function(malaDireta) {
-            $rootScope.$broadcast('listarClientesMalaDireta', {rendaInicial:malaDireta.faixaRendaInicial, rendaFinal:malaDireta.faixaRendaFinal});
+            $rootScope.$broadcast('listarClientesMalaDiretaEvento', {rendaInicial:malaDireta.faixaRendaInicial, rendaFinal:malaDireta.faixaRendaFinal});
         };
         
         vm.excluir = function(malaDireta) {

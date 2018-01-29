@@ -26,8 +26,14 @@
 	<script src="js/controllers/editaMalaDiretaCtrl.js"></script>
 	<script src="js/interceptors/timestampInterceptor.js"></script>
 	<script src="js/interceptors/errorInterceptor.js"></script>
+	<script src="js/interceptors/loadingInterceptor.js"></script>	
 </head>
 <body>
-	<div ng-view></div>	
+	<div ng-show="loading" class="panelErro">
+		<h3>Carregando, aguarde...</h3> 
+	</div>
+	<div ng-hide="loading">
+		<div ng-view></div>	
+	</div>
 </body>
 </html>

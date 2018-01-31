@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.use(express.static(__dirname + '/public'));
+app.use('/mdigital', express.static(__dirname + '/public'));
 
 app.get("/", function (req, res) {
     res.redirect("/index.html");
@@ -18,4 +18,4 @@ app.get("/", function (req, res) {
 
 app.listen(port, hostname);
 
-console.log("Simple server listening at http://" + hostname + ":" + port);
+console.log("Simple server listening at http://" + hostname + ":" + port + '/mdigital');
